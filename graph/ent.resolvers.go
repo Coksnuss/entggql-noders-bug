@@ -5,30 +5,49 @@ package graph
 
 import (
 	"context"
-	"fmt"
+	"regexp"
 
+	"entgo.io/contrib/entgql"
 	"github.com/coksnuss/entgql-noders-bug/ent"
 	"github.com/coksnuss/entgql-noders-bug/graph/generated"
 )
 
 // Node is the resolver for the node field.
 func (r *queryResolver) Node(ctx context.Context, id string) (ent.Noder, error) {
-	panic(fmt.Errorf("not implemented: Node - node"))
+	prefixMatcher := regexp.MustCompile("^/([^/]+)/")
+	resolver := ent.WithNodeType(func(_ context.Context, id string) (string, error) {
+		matches := prefixMatcher.FindStringSubmatch(id)
+		if matches == nil {
+			return "", entgql.ErrNodeNotFound(id)
+		}
+		return matches[1], nil
+	})
+
+	return r.Client.Noder(ctx, id, resolver)
 }
 
 // Nodes is the resolver for the nodes field.
 func (r *queryResolver) Nodes(ctx context.Context, ids []string) ([]ent.Noder, error) {
-	panic(fmt.Errorf("not implemented: Nodes - nodes"))
+	prefixMatcher := regexp.MustCompile("^/([^/]+)/")
+	resolver := ent.WithNodeType(func(_ context.Context, id string) (string, error) {
+		matches := prefixMatcher.FindStringSubmatch(id)
+		if matches == nil {
+			return "", entgql.ErrNodeNotFound(id)
+		}
+		return matches[1], nil
+	})
+
+	return r.Client.Noders(ctx, ids, resolver)
 }
 
 // Posts is the resolver for the posts field.
 func (r *queryResolver) Posts(ctx context.Context, after *ent.Cursor, first *int, before *ent.Cursor, last *int) (*ent.PostConnection, error) {
-	panic(fmt.Errorf("not implemented: Posts - posts"))
+	return r.Client.Post.Query().Paginate(ctx, after, first, before, last)
 }
 
 // Users is the resolver for the users field.
 func (r *queryResolver) Users(ctx context.Context, after *ent.Cursor, first *int, before *ent.Cursor, last *int) (*ent.UserConnection, error) {
-	panic(fmt.Errorf("not implemented: Users - users"))
+	return r.Client.User.Query().Paginate(ctx, after, first, before, last)
 }
 
 // Query returns generated.QueryResolver implementation.

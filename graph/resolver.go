@@ -2,5 +2,8 @@
 
 package graph
 
+import "github.com/coksnuss/entgql-noders-bug/ent"
+
 type Resolver struct {
+	Client *ent.Client
 }

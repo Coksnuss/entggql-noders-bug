@@ -23,35 +23,3 @@ func (c *PostCreate) SetInput(i CreatePostInput) *PostCreate {
 	i.Mutate(c.Mutation())
 	return c
 }
-
-// UpdatePostInput represents a mutation input for updating posts.
-type UpdatePostInput struct {
-	Title        *string
-	ClearCreator bool
-	CreatorID    *types.UserID
-}
-
-// Mutate applies the UpdatePostInput on the PostMutation builder.
-func (i *UpdatePostInput) Mutate(m *PostMutation) {
-	if v := i.Title; v != nil {
-		m.SetTitle(*v)
-	}
-	if i.ClearCreator {
-		m.ClearCreator()
-	}
-	if v := i.CreatorID; v != nil {
-		m.SetCreatorID(*v)
-	}
-}
-
-// SetInput applies the change-set in the UpdatePostInput on the PostUpdate builder.
-func (c *PostUpdate) SetInput(i UpdatePostInput) *PostUpdate {
-	i.Mutate(c.Mutation())
-	return c
-}
-
-// SetInput applies the change-set in the UpdatePostInput on the PostUpdateOne builder.
-func (c *PostUpdateOne) SetInput(i UpdatePostInput) *PostUpdateOne {
-	i.Mutate(c.Mutation())
-	return c
-}
