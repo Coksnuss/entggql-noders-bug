@@ -12,8 +12,8 @@ import (
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
 
-	"entgo.io/bug/ent"
-	"entgo.io/bug/ent/enttest"
+	"github.com/coksnuss/entgql-noders-bug/ent"
+	"github.com/coksnuss/entgql-noders-bug/ent/enttest"
 )
 
 func TestBugSQLite(t *testing.T) {

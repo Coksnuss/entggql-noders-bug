@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"strings"
 
-	"entgo.io/bug/ent/user"
 	"entgo.io/ent/dialect/sql"
+	"github.com/coksnuss/entgql-noders-bug/ent/user"
 )
 
 // User is the model entity for the User schema.

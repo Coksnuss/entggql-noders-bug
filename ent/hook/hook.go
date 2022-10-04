@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"entgo.io/bug/ent"
+	"github.com/coksnuss/entgql-noders-bug/ent"
 )
 
 // The UserFunc type is an adapter to allow the use of ordinary

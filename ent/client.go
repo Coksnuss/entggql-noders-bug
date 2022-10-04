@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"log"
 
-	"entgo.io/bug/ent/migrate"
+	"github.com/coksnuss/entgql-noders-bug/ent/migrate"
 
-	"entgo.io/bug/ent/user"
+	"github.com/coksnuss/entgql-noders-bug/ent/user"
 
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"

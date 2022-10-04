@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"sync"
 
-	"entgo.io/bug/ent/predicate"
-	"entgo.io/bug/ent/user"
+	"github.com/coksnuss/entgql-noders-bug/ent/predicate"
+	"github.com/coksnuss/entgql-noders-bug/ent/user"
 
 	"entgo.io/ent"
 )
